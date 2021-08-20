@@ -1,0 +1,19 @@
+---
+- name: run docker-compose on localhost
+  hosts: localhost
+  gather_facts: false
+  become: true
+  any_errors_fatal: true
+
+  tasks:
+  - name: stop current running Running containers
+    shell: "docker stop $(docker ps -aq)"
+    ignore_errors: yes
+
+  - name: remove all docker containers
+    shell: "docker rm $(docker ps -aq)"
+    ignore_errors: yes
+
+  - name: remove all docker images
+    shell: "docker rmi $(docker images -q)"
+    ignore_errors: yes
