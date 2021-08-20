@@ -18,10 +18,24 @@
     shell: "docker rmi $(docker images -q)"
     ignore_errors: yes
 
+  - name: remove the docker packages
+    yum:
+     name: "{{ packages }}"
+     state: absent
+    vars:
+      packages: 
+      - docker
+      - docker-client
+      - docker-client-latest
+      - docker-common
+      - docker-latest
+      - docker-engine
+
   - name: install docker again
     yum:
      name: "{{ packages }}"
      state: latest
+     enablerepo: "docker-ce-stable"
     vars:
       packages: 
       - docker-ce
@@ -37,7 +51,3 @@
   - name: install elasticsearch python library
     pip:
       name: elasticsearch
-
-  - name: Run containers from docker-compose file from jenkins build
-    command: "docker-compose -f docker-compose.yml up -d"
-  
