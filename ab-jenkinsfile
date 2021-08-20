@@ -18,7 +18,7 @@ pipeline {
 					(configName: 'AB-Ansible-Server', transfers: [sshTransfer(cleanRemote: false, excludes: '', 
 						execCommand: '', execTimeout: 0, flatten: false, 
 						makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', 
-						remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '*.yml, *.py')], 
+						remoteDirectory: '.', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '*.*')], 
 					usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
 			}
 		}
