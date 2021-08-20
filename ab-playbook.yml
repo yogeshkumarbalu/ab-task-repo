@@ -17,3 +17,9 @@
   - name: remove all docker images
     shell: "docker rmi $(docker images -q)"
     ignore_errors: yes
+
+  - name: remove docker from the targets
+    command: yum remove -y docker docker-common docker-selinux docker-engine docker-ce docker-ce-cli
+
+  - name: install docker again
+    command: yum install -y docker
