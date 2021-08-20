@@ -18,15 +18,28 @@
     shell: "docker rmi $(docker images -q)"
     ignore_errors: yes
 
-  - name: remove docker from the targets
+  - name: remove the docker packages
     yum:
-     name: docker
-     state: absent
+     name: {{packages}}
+     state: latest
+    vars:
+      packages: 
+      - docker
+      - docker-client
+      - docker-client-latest
+      - docker-common
+      - docker-latest
+      - docker-engine
 
   - name: install docker again
     yum:
-     name: docker
+     name: {{packages}}
      state: latest
+    vars:
+      packages: 
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
   
   - name: Install docker-compose
     get_url:
@@ -39,4 +52,5 @@
       name: elasticsearch
 
   - name: Run containers from docker-compose file from jenkins build
-    command: "docker-compose -f ab-docker-compose.yml up -d"
+    command: "docker-compose -f docker-compose.yml up -d"
+  
