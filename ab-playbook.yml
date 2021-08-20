@@ -18,19 +18,6 @@
     shell: "docker rmi $(docker images -q)"
     ignore_errors: yes
 
-  - name: remove the docker packages
-    yum:
-     name: "{{ packages }}"
-     state: latest
-    vars:
-      packages: 
-      - docker
-      - docker-client
-      - docker-client-latest
-      - docker-common
-      - docker-latest
-      - docker-engine
-
   - name: install docker again
     yum:
      name: "{{ packages }}"
