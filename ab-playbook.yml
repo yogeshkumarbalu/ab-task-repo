@@ -17,6 +17,11 @@
   - name: remove all docker images
     shell: "docker rmi $(docker images -q)"
     ignore_errors: yes
+  
+  - name: stop the docker service
+    service:
+      name: docker
+      state: stopped
 
   - name: remove the docker packages
     yum:
@@ -42,6 +47,11 @@
       - docker-ce-cli
       - containerd.io
   
+  - name: start the docker service
+    service:
+      name: docker
+      state: started
+
   - name: Install docker-compose
     get_url:
       url : https://github.com/docker/compose/releases/download/1.25.1-rc1/docker-compose-Linux-x86_64
