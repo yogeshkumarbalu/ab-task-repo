@@ -19,7 +19,11 @@
     ignore_errors: yes
 
   - name: remove docker from the targets
-    command: yum remove -y docker docker-common docker-selinux docker-engine docker-ce docker-ce-cli
+    yum:
+     name: docker
+     state: absent
 
   - name: install docker again
-    command: yum install -y docker
+    yum:
+     name: docker
+     state: latest
