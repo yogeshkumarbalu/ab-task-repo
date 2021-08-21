@@ -63,5 +63,5 @@
       name: elasticsearch
  
   - name: run the functional tests written in python script
-    script: ab-tests.py  --es_address localhost --indices 4 --documents 5 --seconds 120 --not-green --clients 5
+    command: python3 ab-tests.py  --es_address localhost --indices 4 --documents 5 --seconds 120 --not-green --clients 5
     register: output
