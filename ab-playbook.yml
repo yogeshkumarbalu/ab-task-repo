@@ -65,13 +65,4 @@
   - name: run the functional tests written in python script
     command: python3 ab-tests.py  --es_address localhost --indices 4 --documents 5 --seconds 120 --not-green --clients 5
     register: output
-    ignore_errors: yes
-
-  - name: check if the functional tests are passed
-    debug:
-      var: output.stdout
-  
-  - name: Assert if updated word is in the stdout of python test
-    assert:
-        that:
-            - '"cluster ok?" in output.stdout'
+    failed_when: '"errorELK" in output.stdout'
