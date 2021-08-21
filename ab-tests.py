@@ -15,6 +15,8 @@ try:
 except:
     print("Could not import elasticsearch..")
     print("Try: pip install elasticsearch")
+    print("errorELK")
+    print ("failure handling mechanisms - ticket, mail etc")
     sys.exit(1)
 import urllib3
 urllib3.disable_warnings()
@@ -126,6 +128,8 @@ def generate_random_int(max_size):
         return randint(1, max_size)
     except:
         print("Not supporting {0} as valid sizes!".format(max_size))
+        print("errorELK")
+        print ("failure handling mechanisms - ticket, mail etc")
         sys.exit(1)
 
 
@@ -241,6 +245,8 @@ def generate_indices(es):
         except Exception as e:
             print("Could not create index. Is your cluster ok?")
             print(e)
+            print("errorELK")
+            print ("failure handling mechanisms - ticket, mail etc")
             sys.exit(1)
 
     # Return the indices
@@ -319,6 +325,8 @@ def main():
         except Exception as e:
             print("Could not connect to elasticsearch!")
             print(e)
+            print("errorELK")
+            print ("failure handling mechanisms - ticket, mail etc")
             sys.exit(1)
 
         # Generate docs
@@ -401,6 +409,6 @@ try:
 except Exception as e:
     print("")
     print(e.message)
-    print("error")
-
+    print("errorELK")
+    print ("failure handling mechanisms - ticket, mail etc")
     sys.exit(1)
