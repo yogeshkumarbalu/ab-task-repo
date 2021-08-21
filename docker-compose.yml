@@ -12,8 +12,6 @@ services:
             memlock:
                 soft: -1
                 hard: -1
-        cap_add:
-            - IPC_LOCK
         volumes:
             - abes-pdata:/usr/share/elasticsearch/data
         ports:
